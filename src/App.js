@@ -99,23 +99,25 @@ const Tooltip = ({ children }) => {
     >
       {trigger}
       {visible && (
-        <div
-          style={{
-            position: "absolute",
-            top: "110%",
-            left: "50%",
-            transform: "translateX(-50%)",
-            padding: "0.5rem",
-            background: "#333",
-            color: "#fff",
-            borderRadius: "4px",
-            whiteSpace: "nowrap",
-            zIndex: 1000,
-          }}
-        >
-          {content}
-        </div>
-      )}
+  <div
+    style={{
+      position: "absolute",
+      top: "110%",
+      left: "50%",
+      transform: "translateX(-50%)",
+      padding: "0.5rem",
+      background: "#333",
+      color: "#fff",
+      borderRadius: "4px",
+      maxWidth: "500px",       // Set a max width for wrapping
+      whiteSpace: "normal",    // Allow text to wrap within the container
+      zIndex: 1000,
+    }}
+  >
+    {content}
+  </div>
+)}
+
     </div>
   );
 };
