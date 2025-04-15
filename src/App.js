@@ -270,7 +270,7 @@ function FeatureOptIn() {
         className={`p-4 flex items-center space-x-3 cursor-pointer border-2 rounded-lg transition ${selectedFeatures.includes(name) ? "border-blue" : "border-gray"}`}
         style={{
           borderColor: selectedFeatures.includes(name) ? "#3b82f6" : "#ccc",
-          backgroundColor: selectedFeatures.includes(name) ? "lightgreen" : "transparent",
+          backgroundColor: selectedFeatures.includes(name) ? "lightgreen" : "#ffcccc", // non-selected boxes now lighter red
         }}
       >
         {icon}
@@ -280,6 +280,8 @@ function FeatureOptIn() {
     <TooltipContent>{tooltip}</TooltipContent>
   </Tooltip>
 ))}
+
+
 
 
         </div>
