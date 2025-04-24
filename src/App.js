@@ -159,6 +159,8 @@ const DialogContent = ({ children, onClick }) => {
         borderRadius: "8px",
         maxWidth: "500px",
         width: "100%",
+        maxHeight: "80vh",
+        overflowY: "auto"
       }}
     >
       {children}
@@ -335,35 +337,42 @@ function FeatureOptIn() {
         </div>
       </div>
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Privacy Notice</DialogTitle>
-          </DialogHeader>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <div style={{ borderTop: "1px solid #ccc", paddingTop: "1rem", marginTop: "1rem" }}>
-              <p style={{ fontSize: "0.875rem", color: "#4b5563" }}>
-                The following defines what data will be collected by Respondus Lockdown Browser and how long it will be stored for virtually administered quizzes and tests in this class. If you have concerns with the information below, please opt for in-person proctoring in the testing center.
-              </p>
-            </div>
-            {selectedFeatures.map((feature) => {
-              const featureData = features.find((f) => f.name === feature);
-              return (
-                <div key={feature}>
-                  <h3 style={{ fontSize: "1.125rem", fontWeight: "600" }}>{feature}</h3>
-                  <p style={{ fontSize: "0.875rem", color: "#4b5563" }}>{featureData?.tooltip}</p>
-                </div>
-              );
-            })}
-            <div style={{ borderTop: "1px solid #ccc", paddingTop: "1rem", marginTop: "1rem" }}>
-              <h3 style={{ fontSize: "1.125rem", fontWeight: "600" }}>Retention Period</h3>
-              <p style={{ fontSize: "0.875rem", color: "#4b5563" }}>
-                The retention period defines that the data from a testing session will be stored on Respondus servers for {retentionPeriods[retentionIndex]} before being deleted.
-              </p>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto p-4">
+        <DialogHeader>
+          <DialogTitle>Privacy Notice</DialogTitle>
+        </DialogHeader>
+
+        <div className="divide-y divide-gray-200 text-gray-700 space-y-4">
+          {/* Intro block */}
+          <section className="pt-2">
+            <p className="text-sm text-gray-600">
+              The following defines what data will be collected by Respondus Lockdown Browser and how long it will be stored for virtually administered quizzes and tests in this class. If you have concerns with the information below, please opt for in-person proctoring in the testing center.
+            </p>
+          </section>
+
+          {/* Feature list */}
+          {selectedFeatures.map((feature) => {
+            const featureData = features.find((f) => f.name === feature);
+            return (
+              <section key={feature} className="pt-2">
+                <h3 className="text-base font-medium">{feature}</h3>
+                <p className="mt-1 text-sm text-gray-600">{featureData?.tooltip}</p>
+              </section>
+            );
+          })}
+
+          {/* Retention */}
+          <section className="pt-2">
+            <h3 className="text-base font-medium">Retention Period</h3>
+            <p className="mt-1 text-sm text-gray-600">
+              The retention period defines that the data from a testing session will be stored on Respondus servers for {retentionPeriods[retentionIndex]} before being deleted.
+            </p>
+          </section>
+        </div>
+      </DialogContent>
+    </Dialog>
+
     </TooltipProvider>
   );
 }
