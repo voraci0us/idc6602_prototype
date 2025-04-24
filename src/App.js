@@ -324,17 +324,6 @@ function FeatureOptIn() {
 
         <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
           <Button
-            className={`${isSaving ? "disabled-btn" : "active-btn"}`}
-            onClick={toggleSave}
-            disabled={isSaving}
-            style={{
-              backgroundColor: isSaving ? "#9ca3af" : "#000",
-              color: "#fff",
-            }}
-          >
-            Save Changes
-          </Button>
-          <Button
             onClick={exportPrivacyNotice}
             style={{
               backgroundColor: "#3b82f6",
